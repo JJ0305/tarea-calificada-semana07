@@ -50,10 +50,15 @@ public class EstudianteController {
         if (resultado.hasErrors()) {
             return "estudiantes/formulario";
         }
+
+        if (estudiante.getPassword() == null || estudiante.getPassword().isBlank()) {
+            estudiante.setPassword(estudiante.getDni());
+        }
         try {
             Estudiante guardado = estudianteService.registrar(estudiante);
             redirect.addFlashAttribute("mensaje",
-                    "Se registró a " + guardado.getNombres() + " " + guardado.getApellidos());
+                    "Se registró a " + guardado.getNombres() + " " + guardado.getApellidos()
+                + ". Contraseña inicial: su DNI.");
             return "redirect:/estudiantes";
         } catch (EstudianteDuplicadoException ex) {
             resultado.rejectValue(ex.getCampo(), "duplicado", ex.getMessage());
