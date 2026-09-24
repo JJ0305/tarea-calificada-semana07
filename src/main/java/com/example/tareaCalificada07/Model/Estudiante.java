@@ -40,7 +40,6 @@ public class Estudiante {
     @Column(nullable = false, unique = true, length = 100)
     private String correo;
 
-    // Opcional: si se ingresa, debe ser un celular peruano (9 dígitos, empieza con 9)
     @Pattern(regexp = "9\\d{8}", message = "El celular debe tener 9 dígitos y empezar con 9")
     @Column(length = 9)
     private String telefono;
