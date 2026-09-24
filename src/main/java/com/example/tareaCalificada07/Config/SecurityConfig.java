@@ -1,4 +1,4 @@
-package com.example.tareaCalificada07.config;
+package com.example.tareaCalificada07.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

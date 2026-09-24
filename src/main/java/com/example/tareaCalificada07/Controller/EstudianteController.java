@@ -1,8 +1,8 @@
-package com.example.tareaCalificada07.controller;
+package com.example.tareaCalificada07.Controller;
 
-import com.example.tareaCalificada07.exception.EstudianteDuplicadoException;
-import com.example.tareaCalificada07.model.Estudiante;
-import com.example.tareaCalificada07.service.EstudianteService;
+import com.example.tareaCalificada07.Exception.EstudianteDuplicadoException;
+import com.example.tareaCalificada07.Model.Estudiante;
+import com.example.tareaCalificada07.Service.EstudianteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;

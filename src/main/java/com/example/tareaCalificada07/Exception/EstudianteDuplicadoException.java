@@ -1,4 +1,4 @@
-package com.example.tareaCalificada07.exception;
+package com.example.tareaCalificada07.Exception;
 
 public class EstudianteDuplicadoException extends RuntimeException {
 

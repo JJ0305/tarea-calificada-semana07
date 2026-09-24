@@ -1,10 +1,13 @@
-package com.example.tareaCalificada07.service;
+package com.example.tareaCalificada07.Service;
 
-import com.example.tareaCalificada07.exception.EstudianteDuplicadoException;
-import com.example.tareaCalificada07.model.Estudiante;
-import com.example.tareaCalificada07.repository.EstudianteRepository;
+import com.example.tareaCalificada07.Exception.EstudianteDuplicadoException;
+import com.example.tareaCalificada07.Model.Estudiante;
+import com.example.tareaCalificada07.Repository.EstudianteRepository;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.Locale;
@@ -13,9 +16,11 @@ import java.util.Locale;
 public class EstudianteService {
 
     private final EstudianteRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
-    public EstudianteService(EstudianteRepository repository) {
+    public EstudianteService(EstudianteRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
     
     @Transactional
@@ -31,6 +36,13 @@ public class EstudianteService {
         if (repository.existsByCorreoIgnoreCase(estudiante.getCorreo())) {
             throw new EstudianteDuplicadoException("correo", "Ya existe un estudiante registrado con ese correo");
         }
+
+        estudiante.setPassword(passwordEncoder.encode(estudiante.getPassword()));
+
+        if (estudiante.getRol() == null || estudiante.getRol().isBlank()) {
+            estudiante.setRol("ROLE_USER");
+        }
+
         return repository.save(estudiante);
     }
 
