@@ -1,31 +1,48 @@
 package com.example.tareaCalificada07.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+@Entity
+@Table(name = "estudiantes")
 public class Estudiante {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Ingresa los nombres del estudiante")
     @Size(max = 60, message = "Los nombres pueden tener hasta 60 caracteres")
+    @Column(nullable = false, length = 60)
     private String nombres;
 
     @NotBlank(message = "Ingresa los apellidos del estudiante")
     @Size(max = 60, message = "Los apellidos pueden tener hasta 60 caracteres")
+    @Column(nullable = false, length = 60)
     private String apellidos;
 
     @NotBlank(message = "Ingresa el DNI")
     @Pattern(regexp = "\\d{8}", message = "El DNI debe tener exactamente 8 dígitos")
+    @Column(nullable = false, unique = true, length = 8)
     private String dni;
 
     @NotBlank(message = "Ingresa el correo")
     @Email(message = "Ingresa un correo válido, por ejemplo nombre@correo.com")
+    @Size(max = 100, message = "El correo puede tener hasta 100 caracteres")
+    @Column(nullable = false, unique = true, length = 100)
     private String correo;
-    
+
+    // Opcional: si se ingresa, debe ser un celular peruano (9 dígitos, empieza con 9)
     @Pattern(regexp = "9\\d{8}", message = "El celular debe tener 9 dígitos y empezar con 9")
+    @Column(length = 9)
     private String telefono;
 
     public Long getId() { return id; }
