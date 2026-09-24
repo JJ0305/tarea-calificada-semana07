@@ -1,4 +1,4 @@
-package com.example.tareaCalificada07.model;
+package com.example.tareaCalificada07.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,6 +44,18 @@ public class Estudiante {
     @Column(length = 9)
     private String telefono;
 
+ 
+    @NotBlank(message = "Ingresa la contraseña")
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, length = 30)
+    private String rol = "ROLE_USER";
+
+    @Column(nullable = false)
+    private boolean activo = true;
+    // ─────────────────────────────────────────────────────────
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -61,4 +73,13 @@ public class Estudiante {
 
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public String getRol() { return rol; }
+    public void setRol(String rol) { this.rol = rol; }
+
+    public boolean isActivo() { return activo; }
+    public void setActivo(boolean activo) { this.activo = activo; }
 }

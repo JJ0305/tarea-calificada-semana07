@@ -1,8 +1,8 @@
-package com.example.tareaCalificada07.controller;
+package com.example.tareaCalificada07.Controller;
 
-import com.example.tareaCalificada07.exception.EstudianteDuplicadoException;
-import com.example.tareaCalificada07.model.Estudiante;
-import com.example.tareaCalificada07.service.EstudianteService;
+import com.example.tareaCalificada07.Exception.EstudianteDuplicadoException;
+import com.example.tareaCalificada07.Model.Estudiante;
+import com.example.tareaCalificada07.Service.EstudianteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -50,10 +50,15 @@ public class EstudianteController {
         if (resultado.hasErrors()) {
             return "estudiantes/formulario";
         }
+
+        if (estudiante.getPassword() == null || estudiante.getPassword().isBlank()) {
+            estudiante.setPassword(estudiante.getDni());
+        }
         try {
             Estudiante guardado = estudianteService.registrar(estudiante);
             redirect.addFlashAttribute("mensaje",
-                    "Se registró a " + guardado.getNombres() + " " + guardado.getApellidos());
+                    "Se registró a " + guardado.getNombres() + " " + guardado.getApellidos()
+                + ". Contraseña inicial: su DNI.");
             return "redirect:/estudiantes";
         } catch (EstudianteDuplicadoException ex) {
             resultado.rejectValue(ex.getCampo(), "duplicado", ex.getMessage());
