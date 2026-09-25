@@ -38,37 +38,37 @@
 
     <div style="display:flex; gap:20px; flex-wrap:wrap;">
 
-        <!-- Ver estudiantes -->
+        <!-- Ver usuarios -->
         <div style="background:white; padding:25px; border-radius:10px; flex:1 1 280px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
             <div style="font-size:40px;">👥</div>
-            <h3 style="margin:10px 0;">Estudiantes</h3>
-            <p style="color:#666; font-size:14px;">Ver el listado de estudiantes registrados.</p>
-            <a th:href="@{/estudiantes}"
+            <h3 style="margin:10px 0;">Usuarios</h3>
+            <p style="color:#666; font-size:14px;">Ver el listado de usuarios registrados.</p>
+            <a th:href="@{/usuarios}"
                style="display:inline-block; background:#0d6efd; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">
                 Ver lista
             </a>
         </div>
 
-        <!-- Registrar estudiante -->
+        <!-- Registrar usuario -->
         <div style="background:white; padding:25px; border-radius:10px; flex:1 1 280px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
             <div style="font-size:40px;">➕</div>
-            <h3 style="margin:10px 0;">Registrar estudiante</h3>
-            <p style="color:#666; font-size:14px;">Añadir un nuevo estudiante al sistema.</p>
-            <a th:href="@{/estudiantes/nuevo}"
+            <h3 style="margin:10px 0;">Registrar usuario</h3>
+            <p style="color:#666; font-size:14px;">Añadir un nuevo usuario al sistema.</p>
+            <a th:href="@{/usuarios/nuevo}"
                style="display:inline-block; background:#198754; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">
                 Registrar
             </a>
         </div>
 
-        <!-- Tareas (placeholder) -->
+        <!-- Tareas (Activado) -->
         <div style="background:white; padding:25px; border-radius:10px; flex:1 1 280px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
             <div style="font-size:40px;">📝</div>
             <h3 style="margin:10px 0;">Tareas</h3>
-            <p style="color:#666; font-size:14px;">Módulo en desarrollo por otro integrante.</p>
-            <button disabled
-                    style="background:#6c757d; color:white; padding:10px 20px; border:none; border-radius:5px;">
-                En desarrollo
-            </button>
+            <p style="color:#666; font-size:14px;">Gestionar y visualizar tus tareas pendientes y completadas.</p>
+            <a th:href="@{/tareas}"
+               style="display:inline-block; background:#6c757d; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">
+                Ver tareas
+            </a>
         </div>
 
     </div>

@@ -57,7 +57,7 @@ public class Usuario {
     private String password;
 
     @Column(nullable = false, length = 30)
-    private String rol;
+    private String rol = "ROLE_USER";
 
     @Column(nullable = false)
     private boolean activo = true;
