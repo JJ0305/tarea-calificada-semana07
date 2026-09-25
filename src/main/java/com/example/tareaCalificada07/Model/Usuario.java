@@ -1,30 +1,36 @@
 package com.example.tareaCalificada07.Model;
 
+import java.util.ArrayList;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 
 @Entity
-@Table(name = "estudiantes")
-public class Estudiante {
+@Table(name = "usuarios")
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="usuario_id")
     private Long id;
 
-    @NotBlank(message = "Ingresa los nombres del estudiante")
+    @NotBlank(message = "Ingresa los nombres del usuario")
     @Size(max = 60, message = "Los nombres pueden tener hasta 60 caracteres")
     @Column(nullable = false, length = 60)
     private String nombres;
 
-    @NotBlank(message = "Ingresa los apellidos del estudiante")
+    @NotBlank(message = "Ingresa los apellidos del usuario")
     @Size(max = 60, message = "Los apellidos pueden tener hasta 60 caracteres")
     @Column(nullable = false, length = 60)
     private String apellidos;
@@ -44,17 +50,32 @@ public class Estudiante {
     @Column(length = 9)
     private String telefono;
 
- 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Tarea> tareas = new ArrayList<>();
+
     @NotBlank(message = "Ingresa la contraseña")
     @Column(nullable = false)
     private String password;
 
     @Column(nullable = false, length = 30)
-    private String rol = "ROLE_USER";
+    private String rol = "ESTUDIANTE";
 
     @Column(nullable = false)
     private boolean activo = true;
-    // ─────────────────────────────────────────────────────────
+
+    public Usuario() {
+    }
+
+    public Usuario(String nombres, String apellidos, String dni, String correo, String telefono, String password) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.password = password;
+        this.rol = "ESTUDIANTE";
+        this.activo = true;
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -82,4 +103,12 @@ public class Estudiante {
 
     public boolean isActivo() { return activo; }
     public void setActivo(boolean activo) { this.activo = activo; }
+
+    public List<Tarea> getTareas() { return tareas;}
+
+    public void setTareas(List<Tarea> tareas) {this.tareas = tareas;}
+    
 }
+
+    
+

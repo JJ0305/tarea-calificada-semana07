@@ -1,8 +1,8 @@
 package com.example.tareaCalificada07.Controller;
 
-import com.example.tareaCalificada07.Exception.EstudianteDuplicadoException;
-import com.example.tareaCalificada07.Model.Estudiante;
-import com.example.tareaCalificada07.Service.EstudianteService;
+import com.example.tareaCalificada07.Exception.UsuarioDuplicadoException;
+import com.example.tareaCalificada07.Model.Usuario;
+import com.example.tareaCalificada07.Service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/estudiantes")
-public class EstudianteController {
+@RequestMapping("/usuarios")
+public class UsuarioController {
 
-    private final EstudianteService estudianteService;
+    private final UsuarioService usuarioService;
 
-    public EstudianteController(EstudianteService estudianteService) {
-        this.estudianteService = estudianteService;
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
 
     @InitBinder
@@ -33,36 +33,36 @@ public class EstudianteController {
 
     @GetMapping
     public String listar(Model model) {
-        model.addAttribute("estudiantes", estudianteService.listar());
-        return "estudiantes/lista";
+        model.addAttribute("usuarios", usuarioService.listar());
+        return "usuarios/lista";
     }
 
     @GetMapping("/nuevo")
     public String mostrarFormulario(Model model) {
-        model.addAttribute("estudiante", new Estudiante());
-        return "estudiantes/formulario";
+        model.addAttribute("usuario", new Usuario());
+        return "usuarios/formulario";
     }
 
     @PostMapping
-    public String registrar(@Valid @ModelAttribute("estudiante") Estudiante estudiante,
+    public String registrar(@Valid @ModelAttribute("usuario") Usuario usuario,
                             BindingResult resultado,
                             RedirectAttributes redirect) {
         if (resultado.hasErrors()) {
-            return "estudiantes/formulario";
+            return "usuarios/formulario";
         }
 
-        if (estudiante.getPassword() == null || estudiante.getPassword().isBlank()) {
-            estudiante.setPassword(estudiante.getDni());
+        if (usuario.getPassword() == null || usuario.getPassword().isBlank()) {
+            usuario.setPassword(usuario.getDni());
         }
         try {
-            Estudiante guardado = estudianteService.registrar(estudiante);
+            Usuario guardado = usuarioService.registrar(usuario);
             redirect.addFlashAttribute("mensaje",
                     "Se registró a " + guardado.getNombres() + " " + guardado.getApellidos()
                 + ". Contraseña inicial: su DNI.");
-            return "redirect:/estudiantes";
-        } catch (EstudianteDuplicadoException ex) {
+            return "redirect:/usuarios";
+        } catch (UsuarioDuplicadoException ex) {
             resultado.rejectValue(ex.getCampo(), "duplicado", ex.getMessage());
-            return "estudiantes/formulario";
+            return "usuarios/formulario";
         }
     }
 }
