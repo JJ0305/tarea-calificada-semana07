@@ -9,7 +9,8 @@ public class Tarea {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tarea_id;
+    @Column(name="tarea_id")
+    private Long id;
 
     @Column(nullable = false, length = 150)
     private String titulo;
@@ -37,8 +38,8 @@ public class Tarea {
         this.estado = 0;
     }
 
-    public Long getId() { return tarea_id; }
-    public void setId(Long id) { this.tarea_id = id; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getTitulo() { return titulo; }
     public void setTitulo(String titulo) { this.titulo = titulo; }

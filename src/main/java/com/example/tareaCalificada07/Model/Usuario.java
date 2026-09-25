@@ -22,7 +22,8 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long usuario_id;
+    @Column(name="usuario_id")
+    private Long id;
 
     @NotBlank(message = "Ingresa los nombres del usuario")
     @Size(max = 60, message = "Los nombres pueden tener hasta 60 caracteres")
@@ -62,8 +63,8 @@ public class Usuario {
     @Column(nullable = false)
     private boolean activo = true;
 
-    public Long getUsuario_id() { return usuario_id; }
-    public void setUsuario_id(Long usuario_id) { this.usuario_id = usuario_id; }
+    public Long getUsuario_id() { return id; }
+    public void setUsuario_id(Long id) { this.id = id; }
 
     public String getNombres() { return nombres; }
     public void setNombres(String nombres) { this.nombres = nombres; }
