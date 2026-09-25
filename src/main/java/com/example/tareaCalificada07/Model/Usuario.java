@@ -17,19 +17,19 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "estudiantes")
-public class Estudiante {
+@Table(name = "usuarios")
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long estudiante_id;
+    private Long usuario_id;
 
-    @NotBlank(message = "Ingresa los nombres del estudiante")
+    @NotBlank(message = "Ingresa los nombres del usuario")
     @Size(max = 60, message = "Los nombres pueden tener hasta 60 caracteres")
     @Column(nullable = false, length = 60)
     private String nombres;
 
-    @NotBlank(message = "Ingresa los apellidos del estudiante")
+    @NotBlank(message = "Ingresa los apellidos del usuario")
     @Size(max = 60, message = "Los apellidos pueden tener hasta 60 caracteres")
     @Column(nullable = false, length = 60)
     private String apellidos;
@@ -49,7 +49,7 @@ public class Estudiante {
     @Column(length = 9)
     private String telefono;
 
-    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tarea> tareas = new ArrayList<>();
 
     @NotBlank(message = "Ingresa la contraseña")
@@ -57,13 +57,13 @@ public class Estudiante {
     private String password;
 
     @Column(nullable = false, length = 30)
-    private String rol = "ROLE_USER";
+    private String rol;
 
     @Column(nullable = false)
-    private int activo = 1;
+    private boolean activo = true;
 
-    public Long getEstudiante_id() { return estudiante_id; }
-    public void setEstudiante_id(Long estudiante_id) { this.estudiante_id = estudiante_id; }
+    public Long getUsuario_id() { return usuario_id; }
+    public void setUsuario_id(Long usuario_id) { this.usuario_id = usuario_id; }
 
     public String getNombres() { return nombres; }
     public void setNombres(String nombres) { this.nombres = nombres; }
@@ -86,8 +86,8 @@ public class Estudiante {
     public String getRol() { return rol; }
     public void setRol(String rol) { this.rol = rol; }
 
-    public int getActivo() { return activo; }
-    public void setActivo(int activo) { this.activo = activo; }
+    public boolean isActivo() { return activo; }
+    public void setActivo(boolean activo) { this.activo = activo; }
 
     public List<Tarea> getTareas() { return tareas;}
 

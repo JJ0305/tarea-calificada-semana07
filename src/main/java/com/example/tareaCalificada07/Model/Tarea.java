@@ -21,12 +21,11 @@ public class Tarea {
     private LocalDate fechaLimite;
 
     @Column(nullable = false)
-    private boolean completada = false;
+    private Integer estado = 0; 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "estudiante_id", nullable = false)
-    private Estudiante estudiante;
-  
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
 
     public Tarea() {
     }
@@ -35,55 +34,24 @@ public class Tarea {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaLimite = fechaLimite;
-        this.completada = false;
+        this.estado = 0;
     }
 
-    public Long getId() {
-        return tarea_id;
-    }
+    public Long getId() { return tarea_id; }
+    public void setId(Long id) { this.tarea_id = id; }
 
-    public void setId(Long id) {
-        this.tarea_id = id;
-    }
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
 
-    public String getTitulo() {
-        return titulo;
-    }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+    public LocalDate getFechaLimite() { return fechaLimite; }
+    public void setFechaLimite(LocalDate fechaLimite) { this.fechaLimite = fechaLimite; }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public Integer getEstado() { return estado; }
+    public void setEstado(Integer estado) { this.estado = estado; }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public LocalDate getFechaLimite() {
-        return fechaLimite;
-    }
-
-    public void setFechaLimite(LocalDate fechaLimite) {
-        this.fechaLimite = fechaLimite;
-    }
-
-    public boolean isCompletada() {
-        return completada;
-    }
-
-    public void setCompletada(boolean completada) {
-        this.completada = completada;
-    }
-
-    public Estudiante getUsuario() {
-        return estudiante;
-    }
-
-    public void setUsuario(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
-
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 }

@@ -1,6 +1,6 @@
 package com.example.tareaCalificada07.Config;
 
-import com.example.tareaCalificada07.Service.EstudianteDetailsService;
+import com.example.tareaCalificada07.Service.UsuarioDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -12,10 +12,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    private final EstudianteDetailsService estudianteDetailsService;
+    private final UsuarioDetailsService usuarioDetailsService;
 
-    public SecurityConfig(EstudianteDetailsService estudianteDetailsService) {
-        this.estudianteDetailsService = estudianteDetailsService;
+    public SecurityConfig(UsuarioDetailsService usuarioDetailsService) {
+        this.usuarioDetailsService = usuarioDetailsService;
     }
 
     @Bean
@@ -26,7 +26,7 @@ public class SecurityConfig {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider =
-                new DaoAuthenticationProvider(estudianteDetailsService);
+                new DaoAuthenticationProvider(usuarioDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
@@ -38,7 +38,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/css/**", "/js/**",
                                  "/images/**", "/h2-console/**", "/error").permitAll()
-                .requestMatchers("/estudiantes/**").authenticated()
+                .requestMatchers("/usuarios/**").authenticated() // Cambiado a /usuarios/**
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form

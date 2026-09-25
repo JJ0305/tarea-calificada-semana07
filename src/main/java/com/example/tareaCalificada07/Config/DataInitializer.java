@@ -1,7 +1,7 @@
 package com.example.tareaCalificada07.Config;
 
-import com.example.tareaCalificada07.Model.Estudiante;
-import com.example.tareaCalificada07.Repository.EstudianteRepository;
+import com.example.tareaCalificada07.Model.Usuario;
+import com.example.tareaCalificada07.Repository.UsuarioRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class DataInitializer {
 
     @Bean
-    CommandLineRunner initData(EstudianteRepository estudianteRepo,
+    CommandLineRunner initData(UsuarioRepository usuarioRepo,
                                PasswordEncoder passwordEncoder) {
         return args -> {
-            if (estudianteRepo.count() == 0) {
+            if (usuarioRepo.count() == 0) {
 
-                Estudiante admin = new Estudiante();
+                Usuario admin = new Usuario();
                 admin.setNombres("Admin");
                 admin.setApellidos("Sistema");
                 admin.setDni("12345678");
@@ -25,9 +25,9 @@ public class DataInitializer {
                 admin.setPassword(passwordEncoder.encode("admin123"));
                 admin.setRol("ROLE_ADMIN");
                 admin.setActivo(true);
-                estudianteRepo.save(admin);
+                usuarioRepo.save(admin);
 
-                Estudiante user = new Estudiante();
+                Usuario user = new Usuario();
                 user.setNombres("Juan");
                 user.setApellidos("Pérez");
                 user.setDni("87654321");
@@ -36,7 +36,7 @@ public class DataInitializer {
                 user.setPassword(passwordEncoder.encode("juan123"));
                 user.setRol("ROLE_USER");
                 user.setActivo(true);
-                estudianteRepo.save(user);
+                usuarioRepo.save(user);
 
                 System.out.println("Usuarios de prueba creados:");
                 System.out.println("   admin@uni.edu / admin123 (ADMIN)");
