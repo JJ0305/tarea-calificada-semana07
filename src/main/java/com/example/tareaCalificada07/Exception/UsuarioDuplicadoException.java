@@ -1,10 +1,10 @@
 package com.example.tareaCalificada07.Exception;
 
-public class EstudianteDuplicadoException extends RuntimeException {
+public class UsuarioDuplicadoException extends RuntimeException {
 
     private final String campo;
 
-    public EstudianteDuplicadoException(String campo, String mensaje) {
+    public UsuarioDuplicadoException(String campo, String mensaje) {
         super(mensaje);
         this.campo = campo;
     }
