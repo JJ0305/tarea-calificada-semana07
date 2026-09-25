@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Task University</title>
+</head>
+<body style="font-family: Arial, sans-serif; background:#f4f6f9; margin:0; padding:0;">
+
+<!-- Barra superior -->
+<div style="background:#0d6efd; color:white; padding:15px 30px; display:flex; justify-content:space-between; align-items:center;">
+    <strong style="font-size:20px;">📚 Task University</strong>
+    <div>
+        <span style="margin-right:15px;">
+            👤 <strong th:text="${correo}">correo</strong>
+            (<span th:text="${rol}">ROL</span>)
+        </span>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit"
+                    style="background:white; color:#0d6efd; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">
+                Cerrar sesión
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Contenido -->
+<div style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
+
+    <div style="background:white; padding:25px; border-radius:10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.08); margin-bottom:30px;">
+        <h1 style="margin:0 0 10px 0;">¡Bienvenido! 🎉</h1>
+        <p style="color:#666; margin:0;">
+            Sesión iniciada como <strong th:text="${correo}">correo</strong>
+            con rol <strong th:text="${rol}">ROL</strong>
+        </p>
+    </div>
+
+    <h2 style="color:#555; font-size:18px;">Accesos rápidos</h2>
+
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+        <!-- Ver estudiantes -->
+        <div style="background:white; padding:25px; border-radius:10px; flex:1 1 280px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            <div style="font-size:40px;">👥</div>
+            <h3 style="margin:10px 0;">Estudiantes</h3>
+            <p style="color:#666; font-size:14px;">Ver el listado de estudiantes registrados.</p>
+            <a th:href="@{/estudiantes}"
+               style="display:inline-block; background:#0d6efd; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">
+                Ver lista
+            </a>
+        </div>
+
+        <!-- Registrar estudiante -->
+        <div style="background:white; padding:25px; border-radius:10px; flex:1 1 280px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            <div style="font-size:40px;">➕</div>
+            <h3 style="margin:10px 0;">Registrar estudiante</h3>
+            <p style="color:#666; font-size:14px;">Añadir un nuevo estudiante al sistema.</p>
+            <a th:href="@{/estudiantes/nuevo}"
+               style="display:inline-block; background:#198754; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">
+                Registrar
+            </a>
+        </div>
+
+        <!-- Tareas (placeholder) -->
+        <div style="background:white; padding:25px; border-radius:10px; flex:1 1 280px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            <div style="font-size:40px;">📝</div>
+            <h3 style="margin:10px 0;">Tareas</h3>
+            <p style="color:#666; font-size:14px;">Módulo en desarrollo por otro integrante.</p>
+            <button disabled
+                    style="background:#6c757d; color:white; padding:10px 20px; border:none; border-radius:5px;">
+                En desarrollo
+            </button>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
