@@ -23,7 +23,7 @@ public class DataInitializer {
                 admin.setCorreo("admin@uni.edu");
                 admin.setTelefono("987654321");
                 admin.setPassword(passwordEncoder.encode("admin123"));
-                admin.setRol("ROLE_ADMIN");
+                admin.setRol("DOCENTE");
                 admin.setActivo(true);
                 usuarioRepo.save(admin);
 
@@ -34,7 +34,7 @@ public class DataInitializer {
                 user.setCorreo("juan@uni.edu");
                 user.setTelefono("912345678");
                 user.setPassword(passwordEncoder.encode("juan123"));
-                user.setRol("ROLE_USER");
+                user.setRol("ESTUDIANTE");
                 user.setActivo(true);
                 usuarioRepo.save(user);
 

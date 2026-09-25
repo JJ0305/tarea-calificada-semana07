@@ -58,7 +58,7 @@ public class Usuario {
     private String password;
 
     @Column(nullable = false, length = 30)
-    private String rol = "ROLE_USER";
+    private String rol = "ESTUDIANTE";
 
     @Column(nullable = false)
     private boolean activo = true;
@@ -73,7 +73,7 @@ public class Usuario {
         this.correo = correo;
         this.telefono = telefono;
         this.password = password;
-        this.rol = "ROLE_USER";
+        this.rol = "ESTUDIANTE";
         this.activo = true;
     }
 

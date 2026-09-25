@@ -34,13 +34,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+        
             .authenticationProvider(authenticationProvider())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/css/**", "/js/**",
-                                 "/images/**", "/h2-console/**", "/error").permitAll()
-                .requestMatchers("/usuarios/**").authenticated() // Cambiado a /usuarios/**
+                .requestMatchers("/login", "/css/**", "/js/**", "/images/**", "/h2-console/**", "/error").permitAll()
+                .requestMatchers("/usuarios/**").hasAuthority("DOCENTE") 
                 .anyRequest().authenticated()
             )
+            .exceptionHandling(ex -> ex.accessDeniedPage("/acceso-denegado"))
             .formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")

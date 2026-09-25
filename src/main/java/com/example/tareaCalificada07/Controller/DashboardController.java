@@ -33,4 +33,9 @@ public class DashboardController {
 
         return "home";
     }
+
+    @GetMapping("/acceso-denegado")
+    public String accesoDenegado() {
+        return "403";
+    }
 }

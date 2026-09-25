@@ -39,7 +39,7 @@ public class UsuarioService {
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 
         if (usuario.getRol() == null || usuario.getRol().isBlank()) {
-            usuario.setRol("ROLE_USER");
+            usuario.setRol("ESTUDIANTE");
         }
 
         return repository.save(usuario);
