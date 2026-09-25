@@ -63,8 +63,22 @@ public class Usuario {
     @Column(nullable = false)
     private boolean activo = true;
 
-    public Long getUsuario_id() { return id; }
-    public void setUsuario_id(Long id) { this.id = id; }
+    public Usuario() {
+    }
+
+    public Usuario(String nombres, String apellidos, String dni, String correo, String telefono, String password) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.password = password;
+        this.rol = "ROLE_USER";
+        this.activo = true;
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getNombres() { return nombres; }
     public void setNombres(String nombres) { this.nombres = nombres; }
