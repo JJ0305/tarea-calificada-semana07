@@ -29,6 +29,9 @@ public class UsuarioService {
         usuario.setDni(usuario.getDni().trim());
         usuario.setCorreo(usuario.getCorreo().trim().toLowerCase(Locale.ROOT));
 
+        System.out.println("CONFIGURACIÓN: Preparando el Dashboard para el usuario " + usuario.getCorreo());
+        usuario.setActivo(true);
+
         if (repository.existsByDni(usuario.getDni())) {
             throw new UsuarioDuplicadoException("dni", "Ya existe un usuario registrado con ese DNI");
         }
