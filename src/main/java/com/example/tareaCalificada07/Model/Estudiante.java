@@ -1,15 +1,20 @@
 package com.example.tareaCalificada07.Model;
 
+import java.util.ArrayList;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "estudiantes")
@@ -17,7 +22,7 @@ public class Estudiante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long estudiante_id;
 
     @NotBlank(message = "Ingresa los nombres del estudiante")
     @Size(max = 60, message = "Los nombres pueden tener hasta 60 caracteres")
@@ -44,7 +49,9 @@ public class Estudiante {
     @Column(length = 9)
     private String telefono;
 
- 
+    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Tarea> tareas = new ArrayList<>();
+
     @NotBlank(message = "Ingresa la contraseña")
     @Column(nullable = false)
     private String password;
@@ -53,11 +60,10 @@ public class Estudiante {
     private String rol = "ROLE_USER";
 
     @Column(nullable = false)
-    private boolean activo = true;
-    // ─────────────────────────────────────────────────────────
+    private int activo = 1;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getEstudiante_id() { return estudiante_id; }
+    public void setEstudiante_id(Long estudiante_id) { this.estudiante_id = estudiante_id; }
 
     public String getNombres() { return nombres; }
     public void setNombres(String nombres) { this.nombres = nombres; }
@@ -80,6 +86,14 @@ public class Estudiante {
     public String getRol() { return rol; }
     public void setRol(String rol) { this.rol = rol; }
 
-    public boolean isActivo() { return activo; }
-    public void setActivo(boolean activo) { this.activo = activo; }
+    public int getActivo() { return activo; }
+    public void setActivo(int activo) { this.activo = activo; }
+
+    public List<Tarea> getTareas() { return tareas;}
+
+    public void setTareas(List<Tarea> tareas) {this.tareas = tareas;}
+    
 }
+
+    
+
