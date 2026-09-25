@@ -29,6 +29,9 @@ public class UsuarioService {
         usuario.setDni(usuario.getDni().trim());
         usuario.setCorreo(usuario.getCorreo().trim().toLowerCase(Locale.ROOT));
 
+        System.out.println("TAREAS: Asignando bandeja de tareas vacía al DNI " + usuario.getDni());
+        usuario.setRol("ESTUDIANTE");
+
         if (repository.existsByDni(usuario.getDni())) {
             throw new UsuarioDuplicadoException("dni", "Ya existe un usuario registrado con ese DNI");
         }
